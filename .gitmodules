@@ -1,0 +1,3 @@
+[submodule "src/extern/argon2"]
+	path = src/extern/argon2
+	url = git@github.com:jwsi/phc-winner-argon2.git
