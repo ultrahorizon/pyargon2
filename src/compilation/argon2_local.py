@@ -63,25 +63,21 @@ typedef struct Argon2_Context {
 int argon2_ctx(argon2_context *context, argon2_type type);""")
 
 # Define the sources
-lib_base = os.path.join("extern", "argon2", "src")
-include_dirs = [
-    os.path.join(lib_base, "..", "include"),
-    os.path.join(lib_base, "blake2"),
-]
+lib_base = '../extern/argon2/src'
+include_dirs = [os.path.join(lib_base, '../include')]
 optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
 
 ffi.set_source(
     "_argon2", "#include <argon2.h>",
     include_dirs=include_dirs,
     sources=[
-        os.path.join(lib_base, path)
-        for path in [
+        os.path.join(lib_base, path) for path in [
             "argon2.c",
-            os.path.join("blake2", "blake2b.c"),
             "core.c",
+            "blake2/blake2b.c",
+            "thread.c",
             "encoding.c",
             "opt.c" if optimized else "ref.c",
-            "thread.c",
         ]
     ],
 )
