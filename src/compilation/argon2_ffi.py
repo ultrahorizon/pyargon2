@@ -1,0 +1,65 @@
+from cffi import FFI as vanilla_FFI
+
+class FFI(vanilla_FFI):
+    """
+    Modifies the base FFI class to define all C functions
+    necessary to run the argon2 hash function.
+    """
+    def __init__(self):
+        super(FFI, self).__init__()
+        self.cdef("""
+        /* ARGON2 FLAGS */
+        #define ARGON2_FLAG_CLEAR_PASSWORD ...
+        #define ARGON2_FLAG_CLEAR_SECRET ...
+        #define ARGON2_DEFAULT_FLAGS ...
+        
+        /* Memory allocator types --- for external allocation */
+        typedef int (*allocate_fptr)(uint8_t **memory, size_t bytes_to_allocate);
+        typedef void (*deallocate_fptr)(uint8_t *memory, size_t bytes_to_allocate);
+        
+        /* Argon2 algorithm type */
+        typedef enum Argon2_type {
+          Argon2_d = 0,
+          Argon2_i = 1,
+          Argon2_id = 2
+        } argon2_type;
+        
+        /* Version of the algorithm */
+        typedef enum Argon2_version {
+            ARGON2_VERSION_10 = 0x10,
+            ARGON2_VERSION_13 = 0x13,
+            ARGON2_VERSION_NUMBER = ARGON2_VERSION_13
+        } argon2_version;
+        
+        /* Argon2 Low-level context type */
+        typedef struct Argon2_Context {
+            uint8_t *out;    /* output array */
+            uint32_t outlen; /* digest length */
+        
+            uint8_t *pwd;    /* password array */
+            uint32_t pwdlen; /* password length */
+        
+            uint8_t *salt;    /* salt array */
+            uint32_t saltlen; /* salt length */
+        
+            uint8_t *secret;    /* key array */
+            uint32_t secretlen; /* key length */
+        
+            uint8_t *ad;    /* associated data array */
+            uint32_t adlen; /* associated data length */
+        
+            uint32_t t_cost;  /* number of passes */
+            uint32_t m_cost;  /* amount of memory requested (KB) */
+            uint32_t lanes;   /* number of lanes */
+            uint32_t threads; /* maximum number of threads */
+        
+            uint32_t version; /* version number */
+        
+            allocate_fptr allocate_cbk; /* pointer to memory allocator */
+            deallocate_fptr free_cbk;   /* pointer to memory deallocator */
+        
+            uint32_t flags; /* array of bool options */
+        } argon2_context;
+        
+        /* Low level context execution function */
+        int argon2_ctx(argon2_context *context, argon2_type type);""")
