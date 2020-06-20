@@ -1,7 +1,7 @@
 import os
 import platform
 
-from compilation.argon2_ffi import FFI
+from classes.FFI import FFI
 
 ffi = FFI()
 
