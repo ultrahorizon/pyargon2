@@ -80,7 +80,7 @@ def hash(password: str, salt: str, pepper: str = "",
     # Check return code and report error if necessary
     if rc != 0:
         raise errors.Argon2Error(errors.Argon2ErrorCode(rc).name)
-    
+
     # Extract result and return in appropriate format
     raw_hash = bytes(ffi.buffer(chash, hash_len))
     if encoding == 'hex':
@@ -109,6 +109,3 @@ def _check_params(password, salt, pepper, hash_len, time_cost, memory_cost,
     if type(version) != int: raise ValueError('version must be of integer type')
     if type(encoding) != str: raise ValueError('encoding must be of string type')
     if encoding not in ['hex', 'b64', 'raw']: raise ValueError(encoding + ' is not a valid Argon2 encoding.')
-
-
-print(hash(password='blah', salt='bla', encoding='raw'))
