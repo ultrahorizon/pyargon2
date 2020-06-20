@@ -1,3 +1,5 @@
+# THIS FILE IS TO BE CALLED BY PYPI's setup.py SCRIPT ONLY
+
 import os
 
 from classes.FFI import FFI

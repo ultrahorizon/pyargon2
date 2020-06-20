@@ -1,3 +1,5 @@
+# USE THIS FILE IF YOU WANT TO BUILD THE C LIBRARY LOCALLY
+
 import os
 import platform
 
@@ -5,7 +7,6 @@ from classes.FFI import FFI
 
 ffi = FFI()
 
-# Define the sources
 lib_base = '../extern/argon2/src'
 include_dirs = [os.path.join(lib_base, '../include')]
 optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
