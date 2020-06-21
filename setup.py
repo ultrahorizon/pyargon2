@@ -1,8 +1,11 @@
 from setuptools import find_packages, setup
 
+with open('README.md') as fd:
+    readme = fd.read()
+
 setup(
     name='pyargon2',
-    version='0.2.0',
+    version='0.9.0',
     author='James Webb',
     author_email='james@ultra-horizon.com',
     license='Apache2',
@@ -10,6 +13,7 @@ setup(
     description="Simultaneously the simplest and most powerful Argon2 implemenation in Python",
     packages=find_packages(),
     keywords="argon2 hash password",
+    long_description=readme,
     classifiers=[
         'Development Status :: 4 - Beta',
         # 'Development Status :: 5 - Production/Stable',
@@ -18,14 +22,11 @@ setup(
         'License :: OSI Approved :: Apache Software License',
 
         'Operating System :: MacOS',
+        'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Operating System :: Unix',
 
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy',
+        'Programming Language:: Python:: 3:: Only'
 
         'Topic :: Security',
         'Topic :: Security :: Cryptography',
