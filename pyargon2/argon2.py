@@ -22,7 +22,7 @@ def hash(password: str, salt: str, pepper: str = "",
          version: int = lib.ARGON2_VERSION_NUMBER,
          encoding: str = 'hex'):
     """
-    The Argon2 hashing function defined in draft RFC (https://www.ietf.org/id/draft-irtf-cfrg-argon2-10.txt)
+    The Argon2 hashing function defined in draft RFC (https://www.ietf.org/id/draft-irtf-cfrg-argon2-10.txt).
     :param password: Password string.
     :param salt: Salt string to use for the password hash (must be unique for each hash).
     :param pepper: Optional pepper string to fold into the hash (keyed hashing).
@@ -33,7 +33,7 @@ def hash(password: str, salt: str, pepper: str = "",
     :param flags: Flags to determine which fields are securely wiped.
     :param variant: Argon2 algorithm variant ('i', 'd', or 'id').
     :param version: Argon2 algorithm version number.
-    :param encoding: Encoding for the returned hash type ('raw', 'hex' or 'b64')
+    :param encoding: Encoding for the returned hash type ('raw', 'hex' or 'b64').
     :return: Hash of password in format specified by the 'encoding' parameter.
     """
     # Check types of all parameters before proceeding
