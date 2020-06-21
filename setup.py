@@ -5,7 +5,7 @@ with open('README.md') as fd:
 
 setup(
     name='pyargon2',
-    version='0.9.0',
+    version='1.0.0',
     author='James Webb',
     author_email='james@ultra-horizon.com',
     license='Apache2',
@@ -16,8 +16,8 @@ setup(
     long_description=readme,
     long_description_content_type='text/markdown',
     classifiers=[
-        'Development Status :: 4 - Beta',
-        # 'Development Status :: 5 - Production/Stable',
+        # 'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
 
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
