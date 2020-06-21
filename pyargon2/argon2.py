@@ -1,6 +1,6 @@
 import base64
 
-from ._ffi import ffi, lib
+from ._argon2 import ffi, lib
 
 import pyargon2.classes.errors as errors
 

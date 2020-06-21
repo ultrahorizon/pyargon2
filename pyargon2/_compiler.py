@@ -1,13 +1,16 @@
-from cffi import FFI as vanilla_FFI
+import os
+import platform
 
-class FFI(vanilla_FFI):
-    """
-    Modifies the base FFI class to define all C functions
-    necessary to run the argon2 hash function.
-    """
-    def __init__(self):
-        super(FFI, self).__init__()
-        self.cdef("""
+from cffi import FFI
+
+# Create the FFI object and define useful variables
+ffi = FFI()
+lib_base = 'extern/argon2/src'
+include_dirs = ['extern/argon2/include']
+optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
+
+# Cherry pick C definitions from library
+ffi.cdef("""
         /* ARGON2 FLAGS */
         #define ARGON2_FLAG_CLEAR_PASSWORD ...
         #define ARGON2_FLAG_CLEAR_SECRET ...
@@ -63,3 +66,22 @@ class FFI(vanilla_FFI):
         
         /* Low level context execution function */
         int argon2_ctx(argon2_context *context, argon2_type type);""")
+
+# Define the module name and sources that will be compiled into the extension
+ffi.set_source(
+    "_argon2", "#include <argon2.h>",
+    include_dirs=include_dirs,
+    sources=[
+        os.path.join(lib_base, path) for path in [
+            "argon2.c",
+            "core.c",
+            "blake2/blake2b.c",
+            "thread.c",
+            "encoding.c",
+            "opt.c" if optimized else "ref.c"
+        ]
+    ],
+)
+
+if __name__ == "__main__":
+    ffi.compile(verbose=True)
