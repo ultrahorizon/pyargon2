@@ -1,0 +1,4 @@
+include *.md LICENSE
+graft extern
+exclude .gitmodules extern/argon2/.git
+global-exclude *.pdf

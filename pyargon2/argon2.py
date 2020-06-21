@@ -1,8 +1,8 @@
 import base64
 
-from _argon2 import ffi, lib
+from ._ffi import ffi, lib
 
-import classes.errors as errors
+import pyargon2.classes.errors as errors
 
 # These parameters should be increased regularly
 DEFAULT_HASH_LENGTH = 32

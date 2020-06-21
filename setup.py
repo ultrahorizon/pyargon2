@@ -13,13 +13,13 @@ from distutils.errors import DistutilsSetupError
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
-CFFI_MODULES = ["compilation/argon2_pypi.py:ffi"]
-lib_base = '../extern/argon2/src'
-include_dirs = [os.path.join(lib_base, '../include')]
+CFFI_MODULES = ["pyargon2/compilation/argon2_pypi.py:ffi"]
+lib_base = 'extern/argon2/src'
+include_dirs = ['extern/argon2/include']
 optimized = platform.machine() in ("i686", "x86", "x86_64", "AMD64")
 
 LIBRARIES = [
-    ("_argon2", {
+    ("argon2", {
         "include_dirs": include_dirs,
         "sources": [
             os.path.join(lib_base, path) for path in [
@@ -189,7 +189,7 @@ class BuildCLibWithCompilerFlags(build_clib):
             include_dirs = build_info.get('include_dirs')
             objects = self.compiler.compile(
                 sources,
-                extra_preargs=["-msse2"] if optimized and not windows else [],
+                extra_preargs=["-msse2"] if optimized else [],
                 output_dir=self.build_temp,
                 macros=macros,
                 include_dirs=include_dirs,
@@ -209,7 +209,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as fh:
 
 setup(
     name='pyargon2',
-    version='0.0.1',
+    version='0.1.8',
     author='James Webb',
     author_email='james@ultra-horizon.com',
     license='Apache2',
@@ -243,6 +243,6 @@ setup(
 
     # CFFI
     zip_safe=False,
-    ext_package="argon2",
+    ext_package="pyargon2",
     **keywords_with_side_effects(sys.argv)
 )
