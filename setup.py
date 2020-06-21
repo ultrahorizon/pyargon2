@@ -14,6 +14,7 @@ setup(
     packages=find_packages(),
     keywords="argon2 hash password",
     long_description=readme,
+    long_description_content_type='text/markdown',
     classifiers=[
         'Development Status :: 4 - Beta',
         # 'Development Status :: 5 - Production/Stable',
@@ -26,7 +27,7 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Unix',
 
-        'Programming Language:: Python:: 3:: Only'
+        'Programming Language :: Python :: 3',
 
         'Topic :: Security',
         'Topic :: Security :: Cryptography',

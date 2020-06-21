@@ -20,6 +20,9 @@ salt = 'a unique salt'
 hex_encoded_hash = hash(password, salt)
 ```
 
+The default parameters aim to generate hashes in around 0.5 seconds and are targeted at a machine housing a CPU with 4 cores and at least 4GB of RAM. If timing differs significantly on your machine, adjust the parameters using the advanced options below.
+**Remember password hashing should be slow for security so don't optimise for speed!**
+
 ## Advanced Usage
 
 ### Function Parameters
@@ -42,6 +45,8 @@ The hash function takes in the following parameters:
 - **variant** : Argon2 algorithm variant ('i', 'd', or 'id').
 - **version** : Argon2 algorithm version number.
 - **encoding** : Encoding for the returned hash type ('raw', 'hex' or 'b64').
+
+For assistance with parameter selection refer to the [draft RFC](https://www.ietf.org/id/draft-irtf-cfrg-argon2-10.txt), in particular "Chapter 4: Parameter Choice".
 
 ### Function Exceptions
 
