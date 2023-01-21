@@ -46,7 +46,7 @@ The hash function takes in the following parameters:
 - **version** : Argon2 algorithm version number.
 - **encoding** : Encoding for the returned hash type ('raw', 'hex' or 'b64').
 
-For assistance with parameter selection refer to [RFC 9106](https://www.rfc-editor.org/rfc/rfc9106.html#section-4), in particular "Chapter 4: Parameter Choice".
+For assistance with parameter selection refer to [RFC 9106](https://www.rfc-editor.org/rfc/rfc9106.html), in particular "Chapter 4: Parameter Choice".
 
 ### Function Exceptions
 
