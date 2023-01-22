@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyargon2"
-version = "1.0.4"
+version = "1.0.5"
 authors = [
   { name="James Webb", email="james@ultra-horizon.com" },
 ]
@@ -30,6 +30,7 @@ classifiers = [
     'Topic :: Security :: Cryptography',
     'Topic :: Software Development :: Libraries',
 ]
+dependencies = ["cffi>=1.0.0"]
 
 [project.urls]
 "Homepage" = "https://github.com/ultrahorizon/pyargon2"
