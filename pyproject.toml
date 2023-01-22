@@ -1,16 +1,16 @@
 [build-system]
-requires = ["setuptools>=56.0", "cffi>=1.0.0"]
+requires = ["setuptools>=64.0", "cffi>=1.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyargon2"
-version = "1.0.3"
+version = "1.0.4"
 authors = [
   { name="James Webb", email="james@ultra-horizon.com" },
 ]
 description = "Simultaneously the simplest and most powerful Argon2 implemenation in Python"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.9.16"
 license = {text = "Apache2"}
 keywords = ["argon2", "hash", "password"]
 classifiers = [
