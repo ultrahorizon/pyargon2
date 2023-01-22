@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64.0", "cffi>=1.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyargon2"
+version = "1.0.1"
+authors = [
+  { name="James Webb", email="james@ultra-horizon.com" },
+]
+description = "Simultaneously the simplest and most powerful Argon2 implemenation in Python"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "Apache2"}
+keywords = ["argon2", "hash", "password"]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: Apache Software License',
+
+    'Operating System :: MacOS',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: Unix',
+
+    'Programming Language :: Python :: 3',
+
+    'Topic :: Security',
+    'Topic :: Security :: Cryptography',
+    'Topic :: Software Development :: Libraries',
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ultrahorizon/pyargon2"
+"Bug Tracker" = "https://github.com/ultrahorizon/pyargon2/issues"
