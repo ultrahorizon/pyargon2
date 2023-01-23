@@ -10,7 +10,7 @@ pip install pyargon2
 
 #### Compatibility
 
-- **pyargon2 now only supports Python 3.7 and beyond**.
+- **pyargon2 now only supports Python 3.9 and beyond**.
 
 ## Basic Usage
 
