@@ -38,7 +38,7 @@ The hash function takes in the following parameters:
 - **password** : A string representing a password.
 - **salt** : A string representing a unique salt.
 
-##### Keyword
+##### Keyword (Optional)
 
 - **pepper** : A secret string to fold into the hash of the password.
 - **hash_len** : The length in bytes of the resulting hash.
