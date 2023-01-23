@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyargon2"
-version = "1.0.5"
+version = "1.0.6"
 authors = [
   { name="James Webb", email="james@ultra-horizon.com" },
 ]
 description = "Simultaneously the simplest and most powerful Argon2 implemenation in Python"
 readme = "README.md"
-requires-python = ">=3.9.16"
+requires-python = ">=3.7"
 license = {text = "Apache2"}
 keywords = ["argon2", "hash", "password"]
 classifiers = [

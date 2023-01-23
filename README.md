@@ -8,6 +8,10 @@ Simultaneously the simplest and most powerful implementation of Argon2 in Python
 pip install pyargon2
 ```
 
+#### Compatibility
+
+- **pyargon2 now only supports Python 3.7 and beyond**.
+
 ## Basic Usage
 
 The hash function supports basic password hashing using the Argon2id variant and mandates password and salt strings. The resulting hash returned is hex encoded.
