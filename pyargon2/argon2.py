@@ -12,7 +12,7 @@ DEFAULT_PARALLELISM = 8
 DEFAULT_FLAGS = lib.ARGON2_FLAG_CLEAR_PASSWORD | lib.ARGON2_FLAG_CLEAR_SECRET
 
 
-def hash(password: str, salt: str, pepper: str = "",
+def hash(password: str or bytes, salt: str or bytes, pepper: str or bytes = "",
          hash_len: int = DEFAULT_HASH_LENGTH,
          time_cost: int = DEFAULT_TIME_COST,
          memory_cost: int = DEFAULT_MEMORY_COST,
@@ -23,9 +23,9 @@ def hash(password: str, salt: str, pepper: str = "",
          encoding: str = 'hex'):
     """
     The Argon2 hashing function defined in draft RFC (https://www.ietf.org/id/draft-irtf-cfrg-argon2-10.txt).
-    :param password: Password string.
-    :param salt: Salt string to use for the password hash (must be unique for each hash).
-    :param pepper: Optional pepper string to fold into the hash (keyed hashing).
+    :param password: Password string or bytes.
+    :param salt: Salt string or bytes to use for the password hash (must be unique for each hash).
+    :param pepper: Optional pepper string or bytes to fold into the hash (keyed hashing).
     :param hash_len: Output length of hash in bytes.
     :param time_cost: Number of iterations to perform.
     :param memory_cost: Memory size in Kibibytes (1024 bytes).
@@ -40,16 +40,11 @@ def hash(password: str, salt: str, pepper: str = "",
     _check_params(password, salt, pepper, hash_len, time_cost, memory_cost,
                   parallelism, flags, variant, version, encoding)
 
-    # Convert to Unicode
-    password = password.encode('utf-8')
-    salt = salt.encode('utf-8')
-
     # Create C variables
     csalt = ffi.new("uint8_t[]", salt)
     chash = ffi.new("uint8_t[]", hash_len)
     cpwd = ffi.new("uint8_t[]", password)
     if pepper:
-        pepper = pepper.encode('utf-8')
         csecret = ffi.new("uint8_t[]", pepper)
         secret_len = len(pepper)
     else:
@@ -96,9 +91,12 @@ def _check_params(password, salt, pepper, hash_len, time_cost, memory_cost,
     """
     Type check all input parameters before dispatching to low-level C.
     """
-    if type(password) != str: raise ValueError('password must be of string type')
-    if type(salt) != str: raise ValueError('salt must be of string type')
-    if type(pepper) != str: raise ValueError('pepper must be of string type')
+    if type(password) == str: password = password.encode('utf-8')
+    if type(password) != bytes: raise ValueError('password must be of string or bytes type')
+    if type(salt) == str: salt = salt.encode('utf-8')
+    if type(salt) != bytes: raise ValueError('salt must be of string or bytes type')
+    if type(pepper) == str: pepper = pepper.encode('utf-8')
+    if type(pepper) != bytes: raise ValueError('pepper must be of string or bytes type')
     if type(hash_len) != int: raise ValueError('pepper must be of integer type')
     if type(time_cost) != int: raise ValueError('time_cost must be of integer type')
     if type(memory_cost) != int: raise ValueError('memory_cost must be of integer type')
