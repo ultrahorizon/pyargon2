@@ -8,10 +8,6 @@ Simultaneously the simplest and most powerful implementation of Argon2 in Python
 pip install pyargon2
 ```
 
-#### Compatibility
-
-- **pyargon2 now only supports Python 3.9 and beyond**.
-
 ## Basic Usage
 
 The hash function supports basic password hashing using the Argon2id variant and mandates password and salt strings. The resulting hash returned is hex encoded.
@@ -29,18 +25,26 @@ The default parameters aim to generate hashes in around 0.5 seconds and are targ
 
 ## Advanced Usage
 
+### Function Choices
+
+pyargon2 contains two functions for hashing. Namely, `hash` and `hash_bytes`. These two functions differ in their input types only.
+This is explained in detail in the subsequent sections. To minimise input dependent hashing performance, dynamic type checking is not
+used in pyargon2. Instead, dedicated functions are exposed to deal with hashing strings or byte arrays separately. As such, one should
+ensure that they hash passwords, salts and peppers of the same type and then pick the corresponding function in pyargon2 as
+appropriate.
+
 ### Function Parameters
 
-The hash function takes in the following parameters:
+The `hash` and `hash_bytes` functions take in the following parameters:
 
 ##### Positional
 
-- **password** : A string representing a password.
-- **salt** : A string representing a unique salt.
+- **password** : A string (or byte array when using `hash_bytes`) representing a password.
+- **salt** : A string (or byte array when using `hash_bytes`) representing a unique salt.
 
 ##### Keyword (Optional)
 
-- **pepper** : A secret string to fold into the hash of the password.
+- **pepper** : A secret string (or byte array when using `hash_bytes`) to fold into the hash of the password.
 - **hash_len** : The length in bytes of the resulting hash.
 - **time_cost** : The number of iterations to perform.
 - **memory_cost** : The number of kibibytes in memory to utilise.
