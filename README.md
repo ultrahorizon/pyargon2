@@ -8,6 +8,8 @@ Simultaneously the simplest and most powerful implementation of Argon2 in Python
 pip install pyargon2
 ```
 
+Please note that for security reasons, pyargon2 does not ship with pre-compiled binaries (Wheels) available on PyPi. This is to ensure that what is shown in this repository is what is installed on target machines. Therefore, during the installation process, the underlying Argon2 C implementation will be compiled from source automatically for your OS and architecture. This will add a short delay to the installation process, but is worthwhile in order to maintain guarantees and verifiability with respect to what is being installed on target machines.
+
 ## Basic Usage
 
 The hash function supports basic password hashing using the Argon2id variant and mandates password and salt strings. The resulting hash returned is hex encoded.
